@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SecuredNotepad.Views.AboutPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:SecuredNotepad.Resources"
+    xmlns:triggers="clr-namespace:SecuredNotepad.Slyles.Triggers"
+    xmlns:vm="clr-namespace:SecuredNotepad.ViewModels"
+    Title="{x:Static resources:AppResources.TitleAboutPage}">
+
+    <ContentPage.BindingContext>
+        <vm:AboutViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.Row="1">
+            <Frame
+                BackgroundColor="#FFFEC6"
+                CornerRadius="45"
+                HasShadow="True"
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <StackLayout
+                    Padding="30,24,30,24"
+                    Orientation="Vertical"
+                    Spacing="10">
+                    <Label FontSize="Title" Text="{x:Static resources:AppResources.AboutAboutPage}" />
+                    <Label
+                        Padding="0,0,0,0"
+                        FontSize="16"
+                        Text="{x:Static resources:AppResources.NoteAboutPage}" />
+
+                </StackLayout>
+            </Frame>
+
+        </ScrollView>
+    </Grid>
+
+</ContentPage>

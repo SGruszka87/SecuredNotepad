@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SecuredNotepad.Views.NoteListPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:SecuredNotepad.Resources"
+    xmlns:triggers="clr-namespace:SecuredNotepad.Slyles.Triggers"
+    xmlns:vm="clr-namespace:SecuredNotepad.ViewModels"
+    Title="{x:Static resources:AppResources.TitleNoteListPage}">
+    <ContentPage.BindingContext>
+        <vm:NoteListViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="Medium" />
+            <Setter Property="BackgroundColor" Value="#1976D2" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="CornerRadius" Value="5" />
+        </Style>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid>
+            <Frame
+                Grid.Row="0"
+                Grid.Column="0"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <ListView
+                    HasUnevenRows="True"
+                    ItemsSource="{Binding NoteList}"
+                    SeparatorVisibility="None">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    BackgroundColor="#FFFEDD"
+                                    CornerRadius="45"
+                                    HasShadow="True"
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="CenterAndExpand">
+
+                                    <Grid RowDefinitions="30,1*,2*">
+                                        <Label
+                                            Grid.Row="0"
+                                            Margin="15,2,15,2"
+                                            FontSize="Small"
+                                            HorizontalOptions="EndAndExpand"
+                                            Text="{Binding Date}"
+                                            VerticalOptions="CenterAndExpand" />
+                                        <Label
+                                            Grid.Row="1"
+                                            Margin="15,5,15,5"
+                                            Padding="5,10,5,10"
+                                            FontSize="Medium"
+                                            HorizontalOptions="StartAndExpand"
+                                            Text="{Binding Title}" />
+
+                                        <Label
+                                            Grid.Row="2"
+                                            Margin="15,5,15,5"
+                                            Padding="5,10,5,10"
+                                            FontSize="Small"
+                                            HorizontalOptions="EndAndExpand"
+                                            Text="{Binding Note}" />
+
+                                    </Grid>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+            <Frame
+                Grid.Row="0"
+                Grid.Column="0"
+                BackgroundColor="#FFFEDD"
+                BorderColor="#FFFEC6"
+                CornerRadius="45"
+                HasShadow="True"
+                HorizontalOptions="FillAndExpand"
+                IsVisible="{Binding ShowAddNote}"
+                VerticalOptions="StartAndExpand">
+                <Grid
+                    Margin="0,0,0,0"
+                    Padding="0,0,0,0"
+                    ColumnDefinitions="*,*">
+                    <Button
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        BackgroundColor="#B2F39A"
+                        Command="{Binding CommandAddNote}"
+                        CornerRadius="45"
+                        Text="✔"
+                        TextColor="#99994F" />
+                    <Entry
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Margin="0,0,0,0"
+                        Text="{Binding Title}"
+                        TextColor="#99994F">
+                        <Entry.Triggers>
+                            <Trigger TargetType="Entry" Property="IsFocused" Value="true">
+                                <Setter Property="TextColor" Value="#494949" />
+                                <Setter Property="Scale" Value="1.05" />
+                            </Trigger>
+                        </Entry.Triggers>
+                    </Entry>
+                    <Entry
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Margin="0,0,0,0"
+                        Text="{Binding Note}"
+                        TextColor="#99994F">
+                        <Entry.Triggers>
+                            <Trigger TargetType="Entry" Property="IsFocused" Value="true">
+                                <Setter Property="TextColor" Value="#494949" />
+                                <Setter Property="Scale" Value="1.05" />
+                            </Trigger>
+                        </Entry.Triggers>
+
+                    </Entry>
+                </Grid>
+            </Frame>
+
+
+            <Button
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="0,0,15,15"
+                BackgroundColor="LightGreen"
+                BorderColor="#99994F"
+                BorderWidth="1"
+                Command="{Binding ShowAddFrameNote}"
+                CornerRadius="45"
+                HeightRequest="75"
+                HorizontalOptions="EndAndExpand"
+                Opacity="0.9"
+                Text="+"
+                TextColor="#ffffff"
+                VerticalOptions="EndAndExpand"
+                WidthRequest="75">
+                <Button.Triggers>
+                    <EventTrigger Event="Clicked">
+                        <triggers:ButtonAnimationToRightTriggerAction />
+                        <triggers:ButtonClickedTriggerAction />
+                    </EventTrigger>
+                    <EventTrigger Event="Pressed">
+                        <triggers:ButtonPressedTriggerAction />
+                    </EventTrigger>
+                    <EventTrigger Event="Released">
+                        <triggers:ButtonRelasedTriggerAction />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+
+            <Button
+                Grid.Row="0"
+                Grid.Column="0"
+                Margin="15,0,0,15"
+                BackgroundColor="#F41F1F"
+                BorderColor="#99994F"
+                BorderWidth="1"
+                Command="{Binding CommandDeleteNote}"
+                CornerRadius="45"
+                HeightRequest="75"
+                HorizontalOptions="StartAndExpand"
+                Opacity="0.9"
+                Text="×"
+                TextColor="#ffffff"
+                VerticalOptions="EndAndExpand"
+                WidthRequest="75">
+                <Button.Triggers>
+                    <EventTrigger Event="Clicked">
+                        <triggers:ButtonAnimationToRightTriggerAction />
+                        <triggers:ButtonClickedTriggerAction />
+                    </EventTrigger>
+                    <EventTrigger Event="Pressed">
+                        <triggers:ButtonPressedTriggerAction />
+                    </EventTrigger>
+                    <EventTrigger Event="Released">
+                        <triggers:ButtonRelasedTriggerAction />
+                    </EventTrigger>
+                </Button.Triggers>
+            </Button>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

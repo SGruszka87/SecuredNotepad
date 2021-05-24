@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="SecuredNotepad.Slyles.CustomControls.FlyoutHeaderView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:SecuredNotepad.Resources">
+    <ContentView.Content>
+        <Frame
+            Margin="0,0,0,5"
+            Padding="5,5,5,5"
+            BackgroundColor="#FFFEDD"
+            CornerRadius="15"
+            HasShadow="True">
+            <StackLayout>
+                <Label
+                    Margin="5,25,5,25"
+                    FontSize="Title"
+                    HorizontalOptions="CenterAndExpand"
+                    LineBreakMode="WordWrap"
+                    Text="{x:Static resources:AppResources.ApplicationName}"
+                    TextColor="#99994F"
+                    VerticalOptions="CenterAndExpand" />
+                <Label
+                    Margin="5,25,5,10"
+                    FontSize="Small"
+                    HorizontalOptions="End"
+                    Text="{x:Static resources:AppResources.ApplicationVersion}"
+                    TextColor="#99994F"
+                    VerticalOptions="End" />
+
+            </StackLayout>
+        </Frame>
+
+    </ContentView.Content>
+</ContentView>

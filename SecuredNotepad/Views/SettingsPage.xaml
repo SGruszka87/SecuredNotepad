@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="SecuredNotepad.Views.SettingsPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:resources="clr-namespace:SecuredNotepad.Resources"
+    xmlns:triggers="clr-namespace:SecuredNotepad.Slyles.Triggers"
+    xmlns:vm="clr-namespace:SecuredNotepad.ViewModels"
+    Title="{x:Static resources:AppResources.TitleSettingsPage}">
+    <ContentPage.BindingContext>
+        <vm:SettingsViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ScrollView Grid.Row="1">
+            <StackLayout
+                Padding="30,24,30,24"
+                Orientation="Vertical"
+                Spacing="10">
+                <Label FontSize="Title" Text="{x:Static resources:AppResources.TitleSettingsPage}" />
+
+                <Label
+                    Padding="0,24,0,0"
+                    FontSize="16"
+                    HorizontalOptions="CenterAndExpand"
+                    Text="{x:Static resources:AppResources.ChangeLanguageSettingsPage}" />
+                <StackLayout Orientation="Horizontal">
+                    <Button
+                        Margin="0,10,0,0"
+                        BackgroundColor="#FFFEC6"
+                        BorderColor="#99994F"
+                        BorderWidth="1"
+                        Command="{Binding ChangeLanguagePL}"
+                        CornerRadius="15"
+                        HorizontalOptions="FillAndExpand"
+                        Text="PL"
+                        TextColor="#99994F">
+                        <Button.Triggers>
+                            <EventTrigger Event="Clicked">
+                                <triggers:ButtonAnimationToRightTriggerAction />
+                                <triggers:ButtonClickedTriggerAction />
+                            </EventTrigger>
+                            <EventTrigger Event="Pressed">
+                                <triggers:ButtonPressedTriggerAction />
+                            </EventTrigger>
+                            <EventTrigger Event="Released">
+                                <triggers:ButtonRelasedTriggerAction />
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button
+                        Margin="0,10,0,0"
+                        BackgroundColor="#FFFEC6"
+                        BorderColor="#99994F"
+                        BorderWidth="1"
+                        Command="{Binding ChangeLanguageEN}"
+                        CornerRadius="15"
+                        HorizontalOptions="FillAndExpand"
+                        Text="EN"
+                        TextColor="#99994F">
+                        <Button.Triggers>
+                            <EventTrigger Event="Clicked">
+                                <triggers:ButtonAnimationToRightTriggerAction />
+                                <triggers:ButtonClickedTriggerAction />
+                            </EventTrigger>
+                            <EventTrigger Event="Pressed">
+                                <triggers:ButtonPressedTriggerAction />
+                            </EventTrigger>
+                            <EventTrigger Event="Released">
+                                <triggers:ButtonRelasedTriggerAction />
+                            </EventTrigger>
+                        </Button.Triggers>
+                    </Button>
+                </StackLayout>
+                <Frame
+                    BackgroundColor="#FFFEC6"
+                    CornerRadius="45"
+                    HasShadow="True">
+                    <Grid>
+                        <Button
+                            Grid.Row="0"
+                            BackgroundColor="#FFFEC6"
+                            BorderColor="#99994F"
+                            BorderWidth="1"
+                            Command="{Binding CommandPassword}"
+                            CornerRadius="15"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="{x:Static resources:AppResources.AddPasswordSettingsPage}"
+                            TextColor="#99994F"
+                            VerticalOptions="Start">
+                            <Button.Triggers>
+                                <EventTrigger Event="Clicked">
+                                    <triggers:ButtonAnimationToRightTriggerAction />
+                                    <triggers:ButtonClickedTriggerAction />
+                                </EventTrigger>
+                                <EventTrigger Event="Pressed">
+                                    <triggers:ButtonPressedTriggerAction />
+                                </EventTrigger>
+                                <EventTrigger Event="Released">
+                                    <triggers:ButtonRelasedTriggerAction />
+                                </EventTrigger>
+                            </Button.Triggers>
+                        </Button>
+                        <Entry
+                            Grid.Row="1"
+                            Margin="25,25,25,25"
+                            HorizontalOptions="FillAndExpand"
+                            HorizontalTextAlignment="Center"
+                            IsPassword="True"
+                            Placeholder="{x:Static resources:AppResources.AddPasswordSettingsPage}"
+                            Text="{Binding Password}">
+                            <Entry.Triggers>
+                                <Trigger TargetType="Entry" Property="IsFocused" Value="true">
+                                    <Setter Property="TextColor" Value="#300787" />
+                                    <Setter Property="Scale" Value="1.05" />
+                                </Trigger>
+                            </Entry.Triggers>
+                        </Entry>
+
+
+                    </Grid>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>
